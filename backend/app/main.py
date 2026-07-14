@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.database import db
-
+from app.routes.volunteer import router as volunteer_router
 # Import Routers
 from app.routes.auth import router as auth_router
 from app.routes.event import router as event_router
@@ -15,7 +15,7 @@ app = FastAPI(
 app.include_router(auth_router)
 app.include_router(event_router)
 app.include_router(budget_router)
-
+app.include_router(volunteer_router)
 # Home API
 @app.get("/")
 def home():
