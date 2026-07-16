@@ -1,7 +1,8 @@
 from bson import ObjectId
 from app.database import db
 from app.models.registration import create_registration
-
+from app.utils.qr_generator import generate_qr
+from app.utils.qr_generator import generate_qr
 
 def add_registration(registration):
     registrations = db.registrations
@@ -71,3 +72,29 @@ def delete_registration(registration_id):
         return {"message": "Registration not found"}
 
     return {"message": "Registration Deleted Successfully"}
+
+
+def generate_registration_qr(registration_id):
+
+    registration = db.registrations.find_one(
+        {"_id": ObjectId(registration_id)}
+    )
+
+    if not registration:
+        return {"message": "Registration not found"}
+
+    qr_path = generate_qr(registration_id)
+
+    db.registrations.update_one(
+        {"_id": ObjectId(registration_id)},
+        {
+            "$set": {
+                "qr_code": qr_path
+            }
+        }
+    )
+
+    return {
+        "message": "QR Generated Successfully",
+        "qr_code": qr_path
+    }
