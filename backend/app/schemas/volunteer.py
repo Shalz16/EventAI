@@ -1,16 +1,23 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
+
 
 class VolunteerCreate(BaseModel):
     name: str
-    email: str
+    email: EmailStr
     phone: str
-    role: str
+    department: str
+    year: int
+    skills: str
     availability: str
+    assigned_event: str
 
 
 class VolunteerUpdate(BaseModel):
     name: str
-    email: str
+    email: EmailStr
     phone: str
-    role: str
+    department: str
+    year: int
+    skills: str
     availability: str
+    assigned_event: str
