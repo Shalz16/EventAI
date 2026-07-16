@@ -5,7 +5,7 @@ from app.routes.volunteer import router as volunteer_router
 from app.routes.auth import router as auth_router
 from app.routes.event import router as event_router
 from app.routes.budget import router as budget_router
-
+from app.routes.registration import router as registration_router
 app = FastAPI(
     title="EventPilot AI API",
     version="1.0.0"
@@ -16,6 +16,7 @@ app.include_router(auth_router)
 app.include_router(event_router)
 app.include_router(budget_router)
 app.include_router(volunteer_router)
+app.include_router(registration_router)
 # Home API
 @app.get("/")
 def home():

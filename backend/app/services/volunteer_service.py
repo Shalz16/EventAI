@@ -48,8 +48,11 @@ def update_volunteer(volunteer_id, volunteer):
                 "name": volunteer.name,
                 "email": volunteer.email,
                 "phone": volunteer.phone,
-                "role": volunteer.role,
-                "availability": volunteer.availability
+                "department": volunteer.department,
+                "year": volunteer.year,
+                "skills": volunteer.skills,
+                "availability": volunteer.availability,
+                "assigned_event": volunteer.assigned_event
             }
         }
     )
