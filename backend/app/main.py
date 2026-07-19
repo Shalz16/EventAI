@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from app.database import db
+from fastapi.staticfiles import StaticFiles
+import os
 from app.routes.volunteer import router as volunteer_router
 # Import Routers
 from app.routes.auth import router as auth_router
@@ -10,6 +12,11 @@ app = FastAPI(
     title="EventPilot AI API",
     version="1.0.0"
 )
+# Create qr_codes folder if it doesn't exist
+os.makedirs("qr_codes", exist_ok=True)
+
+# Serve QR code images
+app.mount("/qr_codes", StaticFiles(directory="qr_codes"), name="qr_codes")
 
 # Include Routers
 app.include_router(auth_router)
