@@ -1,37 +1,57 @@
 from fastapi import FastAPI
-from app.database import db
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import os
-from app.routes.volunteer import router as volunteer_router
-# Import Routers
+
+from app.database import db
+
 from app.routes.auth import router as auth_router
 from app.routes.event import router as event_router
 from app.routes.budget import router as budget_router
+from app.routes.volunteer import router as volunteer_router
 from app.routes.registration import router as registration_router
+
 app = FastAPI(
     title="EventPilot AI API",
     version="1.0.0"
 )
-# Create qr_codes folder if it doesn't exist
+
+# ---------------- CORS ----------------
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5500",
+        "http://127.0.0.1:5500"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# ---------------- Static Files (QR Codes) ----------------
 os.makedirs("qr_codes", exist_ok=True)
 
-# Serve QR code images
-app.mount("/qr_codes", StaticFiles(directory="qr_codes"), name="qr_codes")
+app.mount(
+    "/qr_codes",
+    StaticFiles(directory="qr_codes"),
+    name="qr_codes"
+)
 
-# Include Routers
+# ---------------- Routers ----------------
 app.include_router(auth_router)
 app.include_router(event_router)
 app.include_router(budget_router)
 app.include_router(volunteer_router)
 app.include_router(registration_router)
-# Home API
+
+# ---------------- Home ----------------
 @app.get("/")
 def home():
     return {
         "message": "Welcome to EventPilot AI 🚀"
     }
 
-# Health Check API
+# ---------------- Health ----------------
 @app.get("/health")
 def health():
     try:
