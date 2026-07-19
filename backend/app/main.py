@@ -1,5 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+import os
+
+from app.database import db
 
 from app.routes.auth import router as auth_router
 from app.routes.event import router as event_router
@@ -7,8 +11,14 @@ from app.routes.budget import router as budget_router
 from app.routes.volunteer import router as volunteer_router
 from app.routes.registration import router as registration_router
 
-app = FastAPI(title="EventPilot AI API")
 
+app = FastAPI(
+    title="EventPilot AI API",
+    version="1.0.0"
+)
+
+
+# CORS for Frontend
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -20,12 +30,45 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
-def home():
-    return {"message": "EventPilot AI Backend Running"}
 
+# QR Code Static Folder
+os.makedirs("qr_codes", exist_ok=True)
+
+app.mount(
+    "/qr_codes",
+    StaticFiles(directory="qr_codes"),
+    name="qr_codes"
+)
+
+
+# Routers
 app.include_router(auth_router)
 app.include_router(event_router)
 app.include_router(budget_router)
 app.include_router(volunteer_router)
 app.include_router(registration_router)
+
+
+# Home API
+@app.get("/")
+def home():
+    return {
+        "message": "EventPilot AI Backend Running"
+    }
+
+
+# Health Check
+@app.get("/health")
+def health():
+    try:
+        db.list_collection_names()
+        return {
+            "status": "Running",
+            "database": "Connected"
+        }
+    except Exception as e:
+        return {
+            "status": "Running",
+            "database": "Not Connected",
+            "error": str(e)
+        }
