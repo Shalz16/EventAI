@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <h2>EventPilot AI</h2>
+
+    <ul>
+
+        <li>
+            <a href="dashboard.html" class="active">
+                <i class="fas fa-chart-line"></i>
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="events.html">
+                <i class="fas fa-calendar-alt"></i>
+                Events
+            </a>
+        </li>
+
+        <li>
+            <a href="budget.html">
+                <i class="fas fa-wallet"></i>
+                Budget
+            </a>
+        </li>
+
+        <li>
+            <a href="volunteers.html">
+                <i class="fas fa-users"></i>
+                Volunteers
+            </a>
+        </li>
+
+        <li>
+            <a href="registration.html">
+                <i class="fas fa-user-check"></i>
+                Registration
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="fas fa-user-circle"></i>
+                Profile
+            </a>
+        </li>
+
+        <li>
+            <a href="index.html" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+<div class="main">
+
+    <h1>Dashboard</h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Events</h3>
+            <h2 id="eventsCount">0</h2>
+        </div>
+
+        <div class="card">
+            <h3>Total Budget</h3>
+            <h2 id="budgetCount">0</h2>
+        </div>
+
+        <div class="card">
+            <h3>Volunteers</h3>
+            <h2 id="volunteerCount">0</h2>
+        </div>
+
+        <div class="card">
+            <h3>Registrations</h3>
+            <h2 id="registrationCount">0</h2>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>
