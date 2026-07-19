@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Volunteer Management</title>
+    <link rel="stylesheet" href="css/volunteers.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Volunteer Management</h1>
+
+    <div class="form">
+
+        <input type="text" id="name" placeholder="Volunteer Name">
+
+        <input type="email" id="email" placeholder="Email">
+
+        <input type="text" id="phone" placeholder="Phone Number">
+
+        <input type="text" id="department" placeholder="Department">
+
+        <input type="number" id="year" placeholder="Year">
+
+        <input type="text" id="skills" placeholder="Skills">
+
+        <input type="text" id="availability" placeholder="Availability">
+
+        <input type="text" id="assigned_event" placeholder="Assigned Event ID">
+
+        <button onclick="createVolunteer()">Add Volunteer</button>
+
+    </div>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Department</th>
+                <th>Year</th>
+                <th>Skills</th>
+                <th>Availability</th>
+                <th>Assigned Event</th>
+                <th>Action</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="volunteerTable">
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<script src="js/volunteers.js"></script>
+
+</body>
+
+</html>

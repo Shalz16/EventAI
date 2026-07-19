@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registration Management</title>
+    <link rel="stylesheet" href="css/registration.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Registration Management</h1>
+
+    <div class="form">
+
+        <input type="text" id="participant_name" placeholder="Participant Name">
+
+        <input type="email" id="email" placeholder="Email">
+
+        <input type="text" id="phone" placeholder="Phone Number">
+
+        <input type="text" id="event_id" placeholder="Event ID">
+
+        <button onclick="createRegistration()">
+            Register
+        </button>
+
+    </div>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Participant</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Event ID</th>
+                <th>QR Code</th>
+                <th>Action</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="registrationTable">
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<script src="js/registration.js"></script>
+
+</body>
+</html>

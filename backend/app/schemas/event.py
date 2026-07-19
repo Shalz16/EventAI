@@ -8,7 +8,6 @@ class EventCreate(BaseModel):
     event_date: date
     expected_participants: int
 
-
 class EventUpdate(BaseModel):
     title: str
     description: str

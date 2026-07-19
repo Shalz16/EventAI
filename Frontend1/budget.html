@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Budget Management</title>
+    <link rel="stylesheet" href="css/budget.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Budget Management</h1>
+
+    <div class="form">
+
+        <input type="text" id="event_id" placeholder="Event ID">
+
+        <input type="number" id="total_budget" placeholder="Total Budget">
+
+        <input type="number" id="food_cost" placeholder="Food Cost">
+
+        <input type="number" id="decoration_cost" placeholder="Decoration Cost">
+
+        <input type="number" id="equipment_cost" placeholder="Equipment Cost">
+
+        <input type="number" id="miscellaneous_cost" placeholder="Miscellaneous Cost">
+
+        <button onclick="createBudget()">
+            Add Budget
+        </button>
+
+    </div>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Event ID</th>
+                <th>Total</th>
+                <th>Food</th>
+                <th>Decoration</th>
+                <th>Equipment</th>
+                <th>Misc</th>
+                <th>Action</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="budgetTable">
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<script src="js/budget.js"></script>
+
+</body>
+</html>
