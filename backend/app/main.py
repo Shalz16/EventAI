@@ -10,7 +10,11 @@ from app.routes.event import router as event_router
 from app.routes.budget import router as budget_router
 from app.routes.volunteer import router as volunteer_router
 from app.routes.registration import router as registration_router
-
+from app.routes.ai_coordinator import router as ai_router
+from app.routes import rag
+from app.rag.rag_init import initialize_rag
+from app.routes.feedback import router as feedback_router
+#
 
 app = FastAPI(
     title="EventPilot AI API",
@@ -39,7 +43,10 @@ app.mount(
     StaticFiles(directory="qr_codes"),
     name="qr_codes"
 )
+@app.on_event("startup")
+def load_rag():
 
+    initialize_rag()
 
 # Routers
 app.include_router(auth_router)
@@ -47,8 +54,9 @@ app.include_router(event_router)
 app.include_router(budget_router)
 app.include_router(volunteer_router)
 app.include_router(registration_router)
-
-
+app.include_router(ai_router)
+app.include_router(rag.router)
+app.include_router(feedback_router)
 # Home API
 @app.get("/")
 def home():
